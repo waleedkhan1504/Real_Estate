@@ -1,0 +1,26 @@
+{
+  "name": "mern_real_estate",
+  "version": "1.0.0",
+  "description": "mern real estate managment",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"nodemon server/server.js",
+    "dev":"nodemon server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waleedkhan1504/RealEstate.git"
+  },
+  "author": "waleed",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/waleedkhan1504/RealEstate/issues"
+  },
+  "homepage": "https://github.com/waleedkhan1504/RealEstate#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1"
+  }
+}
