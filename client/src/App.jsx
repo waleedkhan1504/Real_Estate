@@ -6,6 +6,9 @@ import Register from "./pages/Auth/Register";
 import Login from "./pages/Auth/Login";
 import About from "./pages/About";
 import PrivateComponent from "./components/PrivateComponent";
+import CreateListing from "./pages/Listing/CreateListing";
+import Listing from "./pages/Listing/Listing";
+import UpdateListing from "./pages/Listing/UpdateListing";
 
 export default function App() {
   return (
@@ -19,6 +22,12 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route element={<PrivateComponent />}>
             <Route path="/profile" element={<Profile />} />
+            <Route path="/listing/:listingId" element={<Listing />} />
+            <Route path="/createListing" element={<CreateListing />} />
+            <Route
+              path="/update-listing/:listingId"
+              element={<UpdateListing />}
+            />
           </Route>
         </Routes>
       </BrowserRouter>

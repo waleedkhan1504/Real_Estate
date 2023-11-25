@@ -1,3 +1,4 @@
+import Listing from "../models/listingModel.js";
 import userModel from "../models/userModel.js";
 
 import bcrypt from "bcrypt";
@@ -47,11 +48,11 @@ export const getUser = async (req, res, next) => {
     next(error);
   }
 };
-/*
+
 export const getUserListings = async (req, res, next) => {
   if (req.user.userId === req.params.id) {
     try {
-      const listings = await Listin.find({ userRef: req.params.id });
+      const listings = await Listing.find({ userRef: req.params.id });
       res.status(200).json(listings);
     } catch (error) {
       next(error);
@@ -62,4 +63,3 @@ export const getUserListings = async (req, res, next) => {
       .send({ message: "You can only view your own listings!" });
   }
 };
-*/
