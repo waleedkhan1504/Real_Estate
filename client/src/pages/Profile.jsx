@@ -65,11 +65,37 @@ const Profile = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
+  /*
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       dispatch(updateUserStart());
-      const res = await axios.put(
+      const res = await fetch(`/api/user/update/${currentUser._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(updateUserFailure(data.message));
+        return;
+      }
+
+      dispatch(updateUserSuccess(data));
+      setUpdateSuccess(true);
+    } catch (error) {
+      dispatch(updateUserFailure(error.message));
+    }
+  };
+  */
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      dispatch(updateUserStart());
+      const { data } = await axios.put(
         `/api/user/update/${currentUser._id}`,
         {
           ...formData,
@@ -81,7 +107,7 @@ const Profile = () => {
         }
       );
 
-      dispatch(updateUserSuccess(formData));
+      dispatch(updateUserSuccess(data));
       setUpdateSuccess(true);
     } catch (error) {
       dispatch(updateUserFailure(error.message));
@@ -115,14 +141,14 @@ const Profile = () => {
 
   const handleListingDelete = async (listingId) => {
     try {
-      const res = await axios.delete(`/api/listing/delete/${listingId}`, {
+      const { data } = await axios.delete(`/api/listing/delete/${listingId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
       // const data = await res.json();
-      if (res.success === false) {
-        console.log(res.message);
+      if (data.success === false) {
+        console.log(data.message);
         return;
       }
 
@@ -166,11 +192,11 @@ const Profile = () => {
           placeholder="email"
           className="border p-3 rounded-lg"
           id="email"
-          defaultValue={currentUser.email || currentUser.data.email}
+          defaultValue={currentUser?.email || currentUser?.data?.email}
           onChange={handleChange}
         ></input>
         <input
-          type="text"
+          type="password"
           placeholder="password"
           className="border p-3 rounded-lg"
           id="password"

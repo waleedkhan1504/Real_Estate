@@ -25,10 +25,10 @@ const Login = () => {
         navigate("/");
       } else {
         dispatch(signInFailure(response.message));
-        throw new Error(response?.message);
+        message.error(response?.message);
       }
     } catch (error) {
-      message.error(error);
+      message.error(error?.message);
     }
   };
 
